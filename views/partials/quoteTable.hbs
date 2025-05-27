@@ -1,0 +1,16 @@
+<table class="quote-table">
+  <tr>
+    <th style="width: 40px;">QTY</th>
+    <th>Description</th>
+    <th class="unit-price-col">Unit Price</th>
+    <th class="amount-col">Amount</th>
+  </tr>
+  {{#each items}}
+  <tr>
+    <td>{{qty}}</td>
+    <td>{{description}}</td>
+    <td class="unit-price-col">{{unitPrice}}</td>
+    <td class="amount-col">{{amount}}</td>
+  </tr>
+  {{/each}}
+</table>

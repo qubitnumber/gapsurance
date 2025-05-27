@@ -8,6 +8,24 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
+    domains: []
+  },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        fs: false,
+      }
+    }
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve.alias,
+          handlebars: "handlebars/dist/handlebars.js",
+        }
+      }
+    };
   },
 }
 

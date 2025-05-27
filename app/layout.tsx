@@ -4,7 +4,7 @@ import localFont from 'next/font/local'
 import { Inter, Playfair_Display } from 'next/font/google'
 import { cn } from '@/lib/utils'
 
-import Providers from '@/components/providers'
+import Providers from '@/app/providers'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 

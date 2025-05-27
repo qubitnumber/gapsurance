@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto Insurance Quote</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+  <style>
+    {{> styles }}
+  </style>
+</head>
+<body>
+  <div class="container">
+    {{> header company=company }}
+    <div class="title">
+      AUTO INSURANCE<br>QUOTE
+    </div>
+    {{> quoteInfo quote=quote }}
+    {{> billTo customer=customer }}
+    <div class="table-section">
+      {{> quoteTable items=items }}
+      {{> totals totals=totals }}
+    </div>
+    {{> terms terms=terms }}
+    {{> signature signature=signature }}
+  </div>
+</body>
+</html>

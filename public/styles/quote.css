@@ -1,0 +1,203 @@
+body {
+  background: #f8fafc;
+  font-family: 'Montserrat', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 700px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #0001;
+  padding: 40px 48px 32px 48px;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.company-info {
+  font-size: 16px;
+  color: #222;
+  line-height: 1.5;
+}
+
+.upload-logo {
+  border: 2px solid #b2c8be;
+  border-radius: 8px;
+  padding: 24px 48px;
+  text-align: center;
+  color: #7a9a8a;
+  font-size: 18px;
+  background: #f8fafc;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.upload-logo svg {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 8px;
+  color: #7a9a8a;
+}
+
+.title {
+  text-align: center;
+  margin: 40px 0 24px 0;
+  letter-spacing: 0.15em;
+  color: #7a9a8a;
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.quote-info {
+  display: flex;
+  justify-content: flex-end;
+  gap: 40px;
+  margin-bottom: 24px;
+}
+
+.quote-info-table {
+  color: #7a9a8a;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.quote-info-table td {
+  padding: 0 8px 0 0;
+  text-align: right;
+}
+
+.bill-to {
+  margin-bottom: 24px;
+}
+
+.bill-to label {
+  color: #7a9a8a;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.customer-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+  margin: 4px 0;
+}
+
+.customer-address {
+  color: #444;
+  font-size: 15px;
+}
+
+.table-section {
+  margin-top: 24px;
+  margin-bottom: 32px;
+}
+
+.quote-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 0;
+  font-size: 15px;
+}
+
+.quote-table th {
+  background: #7a9a8a;
+  color: #fff;
+  font-weight: 700;
+  padding: 10px 8px;
+  text-align: left;
+  letter-spacing: 0.04em;
+  font-size: 15px;
+}
+
+.quote-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #222;
+}
+
+.quote-table tr:last-child td {
+  border-bottom: none;
+}
+
+.amount-col,
+.unit-price-col {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.totals {
+  margin-top: 0;
+  width: 100%;
+  font-size: 15px;
+}
+
+.totals td {
+  padding: 4px 8px;
+  text-align: right;
+}
+
+.totals .label {
+  color: #444;
+}
+
+.totals .total-label {
+  font-weight: 700;
+  color: #7a9a8a;
+  font-size: 16px;
+  border-top: 3px solid #b2c8be;
+  padding-top: 8px;
+}
+
+.totals .total-value {
+  font-weight: 700;
+  color: #7a9a8a;
+  font-size: 16px;
+  border-top: 3px solid #b2c8be;
+  padding-top: 8px;
+}
+
+.terms {
+  margin-top: 32px;
+  color: #7a9a8a;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.terms-desc {
+  color: #444;
+  font-weight: 400;
+  font-size: 15px;
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+.signature {
+  margin-top: 48px;
+  text-align: right;
+  color: #7a9a8a;
+  font-size: 15px;
+  border-top: 2px solid #b2c8be;
+  width: 260px;
+  float: right;
+  padding-top: 12px;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 800px) {
+  .container { padding: 16px; }
+  .header { flex-direction: column; gap: 16px; }
+  .quote-info { flex-direction: column; gap: 8px; align-items: flex-end; }
+}
