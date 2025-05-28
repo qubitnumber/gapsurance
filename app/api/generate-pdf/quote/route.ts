@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import puppeteer from "puppeteer";
+import chromium from '@sparticuz/chromium';
+
 import { api } from "@/convex/_generated/api";
 import { ConvexHttpClient } from "convex/browser";
 import { quoteTemplate } from '@/lib/hbs'
@@ -47,8 +49,14 @@ export async function GET(req: NextRequest) {
   const htmlContent: string = quoteTemplate(data);
 
   // 1. Generate PDF from HTML
+  // const browser = await puppeteer.launch({
+  //   args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  // });
   const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath(),
+    headless: chromium.headless,
   });
   const page = await browser.newPage();
   await page.setContent(htmlContent, { waitUntil: "networkidle0" });
