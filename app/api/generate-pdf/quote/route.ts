@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
       name: "Your Company Inc.",
       address: "1234 Company St.",
       cityStateZip: "Company Town, ST 12345",
-      logoUrl: "/logo.png"
+      logoUrl: process.env.NEXT_PUBLIC_BASE_URL + "/deductibles.png"
     },
     quote: {
       number: "0000226",

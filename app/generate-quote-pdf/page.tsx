@@ -5,14 +5,14 @@ import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, D
 import { Button } from "@/components/ui/button";
 
 
-export default function Home() {
+export default function GenerateQuotePDF() {
     const [downloading, setDownloading] = useState(false);
 
     const handleDownload = async () => {
         setDownloading(true);
         try {
             // 1. Fetch the signed URL from your Next.js API
-            const res = await fetch("/api/generate-and-store-pdf", {
+            const res = await fetch("/api/generate-pdf/quote", {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
             });

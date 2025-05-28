@@ -1,14 +1,14 @@
 <div class="header">
-  <div class="company-info">
-    <strong>{{company.name}}</strong><br>
-    {{company.address}}<br>
-    {{company.cityStateZip}}
-  </div>
   <div class="upload-logo">
     {{#if company.logoUrl}}
       <img src="{{company.logoUrl}}" alt="Logo" />
     {{else}}
       <span>Upload Logo</span>
     {{/if}}
+  </div>
+  <div class="company-info">
+    <strong>{{company.name}}</strong><br>
+    {{company.address}}<br>
+    {{company.cityStateZip}}
   </div>
 </div>
