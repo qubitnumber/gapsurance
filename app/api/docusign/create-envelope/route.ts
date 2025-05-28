@@ -48,18 +48,24 @@ export async function POST(req: NextRequest) {
   
     const htmlContent: string = quoteTemplate(data);
 
+    const ENV_NODE = process.env.NEXT_ENV_NODE
+
     const accessToken = await getDocusignAccessToken();
 
-    // const browser = await puppeteer.launch({
-    //   args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    //   headless: true
-    // });
-    const browser = await puppeteer.launch({
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath(), // <-- Call the function!
-      headless: chromium.headless,
-    });
+    const browser = ENV_NODE === 'LOCAL'
+      ?
+        await puppeteer.launch({
+          args: ['--no-sandbox', '--disable-setuid-sandbox'],
+          headless: true
+        })
+      :
+        await puppeteer.launch({
+          args: chromium.args,
+          defaultViewport: chromium.defaultViewport,
+          executablePath: await chromium.executablePath(), // <-- Call the function!
+          headless: chromium.headless,
+        });
+
     const page = await browser.newPage();
     await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
     const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });

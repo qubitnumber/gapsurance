@@ -48,16 +48,22 @@ export async function GET(req: NextRequest) {
 
   const htmlContent: string = quoteTemplate(data);
 
-  // 1. Generate PDF from HTML
-  // const browser = await puppeteer.launch({
-  //   args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  // });
-  const browser = await puppeteer.launch({
-    args: chromium.args,
-    defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath(),
-    headless: chromium.headless,
-  });
+  const ENV_NODE = process.env.NEXT_ENV_NODE
+
+  const browser = ENV_NODE === 'LOCAL'
+    ?
+      await puppeteer.launch({
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        headless: true
+      })
+    :
+      await puppeteer.launch({
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath(), // <-- Call the function!
+        headless: chromium.headless,
+      });
+
   const page = await browser.newPage();
   await page.setContent(htmlContent, { waitUntil: "networkidle0" });
   const pdfBuffer = await page.pdf({ format: "A4", printBackground: true });
