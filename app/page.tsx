@@ -139,7 +139,7 @@ export default function Home() {
                   className="rounded-md bg-teal-500 px-8 py-3 text-lg font-medium text-white hover:bg-teal-600"
                   asChild
                 >
-                  <Link href="/claims">Learn More About Claims</Link>
+                  <Link href="/nav/claims">Learn More About Claims</Link>
                 </Button>
               </div>
               <div className="flex justify-center">
@@ -248,7 +248,7 @@ export default function Home() {
                 className="rounded-md border-teal-500 text-teal-500 hover:bg-teal-50 hover:text-teal-600"
                 asChild
               >
-                <Link href="/about/reviews">View All Reviews</Link>
+                <Link href="/nav/reviews">View All Reviews</Link>
               </Button>
             </div>
           </div>

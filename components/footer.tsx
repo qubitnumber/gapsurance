@@ -98,12 +98,12 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Business Insurance</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/business-insurance/builders-risk-insurance" className="text-gray-400 hover:text-white">
+                <Link href="/nav/builders-risk-insurance" className="text-gray-400 hover:text-white">
                   Builder's Risk Insurance
                 </Link>
               </li>
               <li>
-                <Link href="/business-insurance/commercial-property-insurance" className="text-gray-400 hover:text-white">
+                <Link href="/nav/commercial-property-insurance" className="text-gray-400 hover:text-white">
                   Commercial Property
                 </Link>
               </li>
@@ -114,12 +114,12 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Industries</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/industries/amazon-seller-insurance" className="text-gray-400 hover:text-white">
+                <Link href="/nav/amazon-seller-insurance" className="text-gray-400 hover:text-white">
                   Amazon Seller
                 </Link>
               </li>
               <li>
-                <Link href="/industries/airbnb-insurance" className="text-gray-400 hover:text-white">
+                <Link href="/nav/airbnb-insurance" className="text-gray-400 hover:text-white">
                   Airbnb Insurance
                 </Link>
               </li>
@@ -130,22 +130,22 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/about" className="text-gray-400 hover:text-white">
+                <Link href="/nav/story" className="text-gray-400 hover:text-white">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/about/careers" className="text-gray-400 hover:text-white">
+                <Link href="/nav/careers" className="text-gray-400 hover:text-white">
                   Careers
                 </Link>
               </li>
               <li>
-                <Link href="/contact-us" className="text-gray-400 hover:text-white">
+                <Link href="/nav/contact" className="text-gray-400 hover:text-white">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link href="/resources/blog" className="text-gray-400 hover:text-white">
+                <Link href="/nav/blog" className="text-gray-400 hover:text-white">
                   Blog
                 </Link>
               </li>
@@ -168,16 +168,16 @@ export default function Footer() {
               </p>
             </div>
             <div className="flex flex-wrap gap-4 text-sm text-gray-400">
-              <Link href="/privacy-policy" className="hover:text-white">
+              <Link href="#" className="hover:text-white">
                 Privacy Policy
               </Link>
-              <Link href="/terms-of-service" className="hover:text-white">
+              <Link href="#" className="hover:text-white">
                 Terms of Service
               </Link>
-              <Link href="/accessibility" className="hover:text-white">
+              <Link href="#" className="hover:text-white">
                 Accessibility
               </Link>
-              <Link href="/sitemap" className="hover:text-white">
+              <Link href="#" className="hover:text-white">
                 Sitemap
               </Link>
             </div>

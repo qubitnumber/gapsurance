@@ -137,8 +137,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Failed to create Docusign envelope', details: docusignData }, { status: docusignResponse.status });
     }
 
-    console.log('Docusign Envelope Created:', docusignData);
-
     // Return the Docusign response (e.g., envelopeId, uri) to the client
     return NextResponse.json(docusignData, { status: 201 });
 
