@@ -11,8 +11,33 @@ export async function POST(req: NextRequest) {
   const acknowledgement = NextResponse.json({ success: true }, { status: 200 });
 
   try {
-    const xmlBody = await req.text();
+    let xmlBody = await req.text();
     console.log("Received Docusign webhook (XML):\n", xmlBody);
+
+    const a = {
+      "event":"envelope-completed",
+      "apiVersion":"v2.1",
+      "uri":"/restapi/v2.1/accounts/24dfce13-9dce-4aa0-ba12-da5389bb9d8a/envelopes/a70a5ef2-12c4-4aaf-84c5-b84134dce420",
+      "retryCount":3,
+      "configurationId":21752918,
+      "generatedDateTime":"2025-05-30T18:03:50.4233752Z",
+      "data":{
+        "accountId":"24dfce13-9dce-4aa0-ba12-da5389bb9d8a",
+        "userId":"8c531060-928e-471d-9cac-b829f616b0bf",
+        "envelopeId":"a70a5ef2-12c4-4aaf-84c5-b84134dce420"
+      }
+    }
+
+    const firstTag = xmlBody.indexOf("<");
+    if (firstTag > 0) {
+      xmlBody = xmlBody.slice(firstTag);
+    }
+    xmlBody = xmlBody.trim();
+
+    // Remove BOM if present
+    if (xmlBody.charCodeAt(0) === 0xfeff) {
+      xmlBody = xmlBody.slice(1);
+    }
 
     // Parse the XML body
     const result = await parseStringPromise(xmlBody, { explicitArray: false });
