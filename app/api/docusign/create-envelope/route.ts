@@ -3,12 +3,18 @@ import puppeteer from 'puppeteer'
 import chromium from '@sparticuz/chromium';
 import { Buffer } from 'buffer'
 
+import { ConvexHttpClient } from  "convex/browser";
+import { api } from "@/convex/_generated/api";
+
 import { quoteTemplate } from '@/lib/hbs'
 import { getDocusignAccessToken } from '@/lib/docusignTokenManager'
 
+const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
 export async function POST(req: NextRequest) {
   try {
+    const { quoteId } = await req.json();
+
     const data = {
       title: "Gap Insurance Quote",
       name: "John Doe",
@@ -20,7 +26,7 @@ export async function POST(req: NextRequest) {
         logoUrl: process.env.NEXT_PUBLIC_BASE_URL + "/deductibles.png"
       },
       quote: {
-        number: "0000226",
+        number: quoteId,
         date: "11-04-2025",
         dueDate: "25-04-2025"
       },
@@ -133,11 +139,24 @@ export async function POST(req: NextRequest) {
     const docusignData = await docusignResponse.json();
 
     if (!docusignResponse.ok) {
-      console.error('Docusign API Error:', docusignData);
-      return NextResponse.json({ error: 'Failed to create Docusign envelope', details: docusignData }, { status: docusignResponse.status });
+      console.error("Docusign API Error:", docusignData);
+      return NextResponse.json(
+        { error: "Failed to create Docusign envelope", details: docusignData },
+        { status: docusignResponse.status }
+      );
     }
 
-    // Return the Docusign response (e.g., envelopeId, uri) to the client
+    // Save docusignData to Convex envelopes table
+    try {
+      await convex.mutation(api.envelope.createEnvelope, {
+        docusignEnvelopeId: docusignData.envelopeId,
+        status: docusignData.status || "sent",
+        quoteId,
+      });
+    } catch (err) {
+      console.error("Failed to save envelope to Convex:", err);
+    }
+
     return NextResponse.json(docusignData, { status: 201 });
 
   } catch (error) {

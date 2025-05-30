@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
-export default function CreateEnvelope() {
+export default function CreateEnvelope({ quoteId }: { quoteId: string }) {
   const [downloading, setDownloading] = useState(false);
 
   const createDocusignEnvelope = async () => {
@@ -15,6 +15,7 @@ export default function CreateEnvelope() {
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({quoteId})
       });
     
       const data = await res.json();
@@ -22,9 +23,6 @@ export default function CreateEnvelope() {
       if (!res.ok) {
         console.error('Error creating envelope:', data.error);
         alert('Failed to create envelope: ' + (data.details?.message || data.error));
-      } else {
-        console.log('Envelope created successfully:', data);
-        alert('Envelope created! User needs to sign.');
       }
     } catch (err) {
       console.log((err as Error).message);
@@ -34,10 +32,10 @@ export default function CreateEnvelope() {
   }
 
   return (
-    <div className="m-32">
+    <div className="bg-teal-500 hover:bg-teal-600 text-white">
       <Dialog>
         <DialogTrigger asChild>
-            <Button variant="default" disabled={downloading}>Submit Application</Button>
+            <Button variant="default" disabled={downloading}>Submit Application & Sign</Button>
         </DialogTrigger>
         {downloading && (
           <div style={{
@@ -65,7 +63,7 @@ export default function CreateEnvelope() {
         <DialogContent>
             <DialogTitle>Confirm Save</DialogTitle>
             <DialogDescription>
-                Do you want to submit this application?
+                Do you want to submit this application? Please check your email inbox to make a signature.
             </DialogDescription>
             <DialogFooter>
             <DialogClose asChild>

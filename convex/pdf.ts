@@ -11,11 +11,13 @@ export const getUploadUrl = mutation({
 
 export const savePdfMetadata = mutation({
   args: {
+    quoteId: v.string(),
     storageId: v.string(),
     filename: v.string(),
   },
   handler: async (ctx, args) => {
     return await ctx.db.insert("pdfs", {
+      quoteId: args.quoteId,
       storageId: args.storageId,
       filename: args.filename,
       createdAt: Date.now().toString(),

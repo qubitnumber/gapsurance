@@ -8,7 +8,9 @@ import { quoteTemplate } from '@/lib/hbs'
 
 const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
+  const { quoteId } = await req.json();
+
   const data = {
     title: "Gap Insurance Quote",
     name: "John Doe",
@@ -20,7 +22,7 @@ export async function GET(req: NextRequest) {
       logoUrl: process.env.NEXT_PUBLIC_BASE_URL + "/deductibles.png"
     },
     quote: {
-      number: "0000226",
+      number: quoteId,
       date: "11-04-2025",
       dueDate: "25-04-2025"
     },
@@ -85,6 +87,7 @@ export async function GET(req: NextRequest) {
 
   // 4. Store metadata in Convex DB
   const res = await convex.mutation(api.pdf.savePdfMetadata, {
+    quoteId,
     storageId,
     filename: "quote.pdf",
   })
